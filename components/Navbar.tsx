@@ -3,20 +3,15 @@ import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 import LogoutButton from "./LogoutButton";
+import logo from '@/public/static/images/logo.png'
 
 const Navbar = async() => {
     const session = await auth();
-    return <nav className="border-b bg-background w-full flex items-center">
-        <div className="flex w-full items-center justify-between my-4 mx-4 md:mx-0">
-            <Link className="font-bold" href="/">
-                Home
+    return <nav className="border-b bg-white w-full flex items-center">
+        <div className="flex w-full items-center justify-between my-3 mx-3 md:mx-12">
+            <Link className="logo font-extrabold text-blue-800 text-2xl" href="/">
+                CSLVEO
             </Link>
-
-            <div className="flex items-center gap-x-5">
-                <Link href="/middleware">Middleware</Link>
-                <Link href="/server">Server</Link>
-            </div>
-
             <div className="flex items-center gap-x-5">
                 {session?.user ? 
                     <div className="flex items-center gap-4">
@@ -33,7 +28,6 @@ const Navbar = async() => {
                         <div className="bg-blue-600 text-white text-sm px-4 py-2 rounded-sm">Login</div>
                     </Link>
                 }
-                
             </div>
         </div>
     </nav>;
