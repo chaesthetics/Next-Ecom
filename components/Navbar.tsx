@@ -10,8 +10,8 @@ import { IoIosSearch } from "react-icons/io";
 
 const Navbar = async() => {
     const session = await auth();
-    return <nav className="border-b bg-white w-full flex items-center">
-        <div className="flex w-full items-center justify-between my-4 mx-4 md:mx-12">
+    return <nav className="bg-white w-full flex items-center sticky top-0 z-50">
+        <div className="flex w-full items-center justify-between my-4 mx-6 md:mx-12">
             <Link className="logo font-black text-blue-800 text-2xl flex items-center gap-2" href="/">
                 <Image width={30} height={30} alt="logo" src={'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACQAAAAkCAMAAADW3miqAAAAVFBMVEUMIU4WL2cfP4IsUqUuVqsePH4WMWkMIE0HGkAJGUMAAAAnS5gvVKcjRYwuVqsrUKEnS5glR5EiQ4ogQIQePH4bOHYYM28VL2cTK18QJlcNIk8JHEXcW5ykAAAADnRSTlPf39/t36Cfn10fAC9ZX0CfO88AAADVSURBVHjatZTNDoJADIRnNh5ITPTi+7+dR+NBvRh1BArlpymSELtL+em3pR3I8gCARDto3m4uBb2VhqkPP9HdYIYL8xAjxLA4ZJonYAIllkJMISZxh+hcZjtAtPjVpOh9NYEIY4anm7rjGgiboV0aURlBTD7w6yihmXgsv05DTfxduJbTqIWYyqRUgshpgP6ruHoxP33R++e0qXftHfJlJ0A2zI3FDCZ3sGURUriaQVrXnRDpR1UWOlfHfFKd1KH3SihpHjrjUCjK5q3S9B8/x12htAy+i+5EJWkG0ucAAAAASUVORK5CYII='} />
                 <p className="hidden sm:block">CSLVEO</p>
@@ -22,13 +22,16 @@ const Navbar = async() => {
                         Watches
                     </div>
                     <div className="flex items-center hover:border-b-2 py-2 border-b-2 border-white hover:border-black animation-300 duration-200 hover:cursor-pointer">
-                        Electronic Musical Instruments
+                        Shoes
                     </div>
                     <div className="flex items-center hover:border-b-2 py-2 border-b-2 border-white hover:border-black animation-300 duration-200 hover:cursor-pointer">
-                        Calculators
+                        Bags
                     </div>
                     <div className="flex items-center hover:border-b-2 py-2 border-b-2 border-white hover:border-black animation-300 duration-200 hover:cursor-pointer">
-                        Label Printers and Projectors
+                        Gaming
+                    </div>
+                    <div className="flex items-center hover:border-b-2 py-2 border-b-2 border-white hover:border-black animation-300 duration-200 hover:cursor-pointer">
+                        Electronics
                     </div>
                 </div>
                 <div className="flex items-center gap-4 md:gap-6">
