@@ -10,11 +10,11 @@ import { IoIosSearch } from "react-icons/io";
 import { Button, Popover } from "flowbite-react";
 import { FiSettings } from "react-icons/fi";
 import { GrCircleQuestion } from "react-icons/gr";
-import { FiLogOut } from "react-icons/fi";
+import LogoutButton from "./LogoutButton";
 
 const Navbar = async() => {
     const session = await auth();
-    return <nav className="bg-white w-full flex items-center sticky top-0 z-50">
+    return <nav className={`bg-white w-full flex items-center sticky top-0 z-50 ` + (session?.user ? '' : 'hidden')}>
         <div className="flex w-full items-center justify-between my-4 mx-6 md:mx-12">
             <Link className="logo font-black text-blue-800 text-2xl flex items-center gap-2" href="/">
                 <Image width={30} height={30} alt="logo" src={'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACQAAAAkCAMAAADW3miqAAAAVFBMVEUMIU4WL2cfP4IsUqUuVqsePH4WMWkMIE0HGkAJGUMAAAAnS5gvVKcjRYwuVqsrUKEnS5glR5EiQ4ogQIQePH4bOHYYM28VL2cTK18QJlcNIk8JHEXcW5ykAAAADnRSTlPf39/t36Cfn10fAC9ZX0CfO88AAADVSURBVHjatZTNDoJADIRnNh5ITPTi+7+dR+NBvRh1BArlpymSELtL+em3pR3I8gCARDto3m4uBb2VhqkPP9HdYIYL8xAjxLA4ZJonYAIllkJMISZxh+hcZjtAtPjVpOh9NYEIY4anm7rjGgiboV0aURlBTD7w6yihmXgsv05DTfxduJbTqIWYyqRUgshpgP6ruHoxP33R++e0qXftHfJlJ0A2zI3FDCZ3sGURUriaQVrXnRDpR1UWOlfHfFKd1KH3SihpHjrjUCjK5q3S9B8/x12htAy+i+5EJWkG0ucAAAAASUVORK5CYII='} />
@@ -60,8 +60,8 @@ const Navbar = async() => {
                         content={
                             <div className="flex flex-col px-2 py-2 shadow">
                                 <div className="px-2 py-2 rounded-md flex items-center gap-2 hover:bg-gray-100">
-                                    <img src="https://avatars.githubusercontent.com/u/61530799?v=4" className="w-8 h-8 rounded-full"/>
-                                    <p className="text-sm font-semibold">Auriel James Fernandez</p>
+                                    <img src={session?.user?.image} className="w-8 h-8 rounded-full"/>
+                                    <p className="text-sm font-semibold">{session?.user?.name}</p>
                                 </div>
                                 <hr className="flex my-2" />
                                 <div className="px-2 py-2 rounded-md flex items-center gap-2 hover:bg-gray-100">
@@ -72,17 +72,13 @@ const Navbar = async() => {
                                     <GrCircleQuestion />
                                     <p className="text-sm font-semibold">Help & Support</p>
                                 </div>
-                                <div className="px-2 py-2 rounded-md flex items-center gap-2 hover:bg-gray-100">
-                                    <FiLogOut />
-                                    <p className="text-sm font-semibold">Log Out</p>
-                                </div>
+                                <LogoutButton />
                             </div>
                         }
                         >
                         <FiAlignRight size={24}/>
                         </Popover>
                     </div>
-                    
                 </div>
             </div>
         </div>

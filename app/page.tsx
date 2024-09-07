@@ -25,7 +25,7 @@ export default async function Home() {
           <hr className="w-full h-[2px] mx-auto mt-20 bg-gray-500 border-1 rounded dark:bg-gray-700"/>
         </div>
       </div>
-      <div className="w-full lg:px-14 mb-20">
+      <div className="w-full px-4 lg:px-14 mb-20">
         <MyCarousel2 />
       </div>
     </main>
