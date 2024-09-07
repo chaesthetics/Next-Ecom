@@ -7,6 +7,10 @@ import { IoPersonOutline } from "react-icons/io5";
 import { LuHeart } from "react-icons/lu";
 import { FiShoppingBag } from "react-icons/fi";
 import { IoIosSearch } from "react-icons/io";
+import { Button, Popover } from "flowbite-react";
+import { FiSettings } from "react-icons/fi";
+import { GrCircleQuestion } from "react-icons/gr";
+import { FiLogOut } from "react-icons/fi";
 
 const Navbar = async() => {
     const session = await auth();
@@ -36,7 +40,7 @@ const Navbar = async() => {
                 </div>
                 <div className="flex items-center gap-4 md:gap-6">
                     <div className="flex relative items-center">
-                        <input className="focus:outline-none border-b text-xs pl-2 pr-6 py-2 placeholder-text-green" placeholder="Search..." />
+                        <input className="focus:outline-none border-b text-xs pl-2 pr-6 py-3 placeholder-text-green" placeholder="Search..." />
                         <div className="absolute right-0 mb-1">
                             <IoIosSearch size={20}/>
                         </div>
@@ -51,8 +55,34 @@ const Navbar = async() => {
                         <IoPersonOutline size={20}/>
                     </div>
                     <div className="hover:cursor-pointer">
+                    <Popover
+                        aria-labelledby="default-popover"
+                        content={
+                            <div className="flex flex-col px-2 py-2 shadow">
+                                <div className="px-2 py-2 rounded-md flex items-center gap-2 hover:bg-gray-100">
+                                    <img src="https://avatars.githubusercontent.com/u/61530799?v=4" className="w-8 h-8 rounded-full"/>
+                                    <p className="text-sm font-semibold">Auriel James Fernandez</p>
+                                </div>
+                                <hr className="flex my-2" />
+                                <div className="px-2 py-2 rounded-md flex items-center gap-2 hover:bg-gray-100">
+                                    <FiSettings />
+                                    <p className="text-sm font-semibold">Settings & privacy</p>
+                                </div>
+                                <div className="px-2 py-2 rounded-md flex items-center gap-2 hover:bg-gray-100">
+                                    <GrCircleQuestion />
+                                    <p className="text-sm font-semibold">Help & Support</p>
+                                </div>
+                                <div className="px-2 py-2 rounded-md flex items-center gap-2 hover:bg-gray-100">
+                                    <FiLogOut />
+                                    <p className="text-sm font-semibold">Log Out</p>
+                                </div>
+                            </div>
+                        }
+                        >
                         <FiAlignRight size={24}/>
+                        </Popover>
                     </div>
+                    
                 </div>
             </div>
         </div>
