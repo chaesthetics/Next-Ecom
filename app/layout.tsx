@@ -4,6 +4,8 @@ import "./globals.css";
 import { SessionProvider } from "next-auth/react";
 import { auth } from "@/auth";
 import Navbar from "@/components/Navbar";
+import { ThemeModeScript } from "flowbite-react";
+import Footer from "@/components/Footer";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -22,11 +24,12 @@ export default async function RootLayout({
     <SessionProvider session={session}>
     <html lang="en">
       <body className={inter.className}>
-        <div className="bg-slate-50 w-screen h-screen flex flex-col">
+        <div className="bg-white w-full h-full flex flex-col">
           <Navbar />
           <div className="flex-grow">
             {children}
           </div>
+          <Footer />
         </div>
       </body>
     </html>

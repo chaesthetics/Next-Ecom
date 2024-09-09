@@ -3,7 +3,7 @@ import LoginGithub from "@/components/LoginGithub";
 
 const SignIn = () => {
     return(
-        <div className="w-full flex mt-20 justify-center items-center text-center">
+        <div className="w-full flex justify-center items-center text-center h-screen">
             <section className="flex flex-col w-[400px]">
                 <h1 className="text-3xl w-full text-center font-bold mb-6">Sign in</h1>  
                 <form className="flex flex-col gap-2">
