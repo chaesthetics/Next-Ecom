@@ -35,9 +35,9 @@ const getUserByEmail = async(email: string) => {
  
 export const signup = async(formData: FormData) => {
 
+    let redirectPath: string | null = null
     try{
         if(!formData.get("name") || !formData.get("password") || !formData.get("email")){
-
             throw new Error("Invalid fields");
         }
         const name = formData.get("name") as string;
@@ -49,33 +49,28 @@ export const signup = async(formData: FormData) => {
         console.log(existingUser);
 
         const isPasswordConfirm = (password === confirmPassword);
-        if(isPasswordConfirm){
-            if(!existingUser){
-                try{
-                    const hashed = saltAndHashPassword(password);
-                    await db.user.create({
-                        data : {
-                            name : name,
-                            email : email,
-                            hashedPassword : hashed,
-                            role: "ADMIN",
-                        }
-                    });
-                }catch(error:any){
-                    console.log(error);
-                };
-            
-            redirect('/sign-in');
-            }else{
-                throw new Error("email already exist");
-            }
-        }else{
+        if(!isPasswordConfirm){
             throw new Error("Password does not match");
         }
-    }
-    catch(err){
+        if(existingUser){
+            throw new Error("email already exist");
+        }
+        const hashed = saltAndHashPassword(password);
+        await db.user.create({
+            data : {
+                name : name,
+                email : email,
+                hashedPassword : hashed,
+                role: "ADMIN",
+                image: "https://w7.pngwing.com/pngs/744/940/png-transparent-anonym-avatar-default-head-person-unknown-user-user-pictures-icon-thumbnail.png",
+        }
+        });
+        redirectPath = '/sign-in';
+    }catch(err){
         console.log(err);
+        redirectPath = '/sign-up';
     }
+    redirect(redirectPath);
 }
 
 export const loginWithCreds = async(formData: FormData) => {

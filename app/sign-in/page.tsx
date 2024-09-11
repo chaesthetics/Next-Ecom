@@ -5,7 +5,7 @@ import { loginWithCreds } from "@/actions/auth";
 
 const SignIn = () => {
     return(
-        <div className="w-full flex justify-center items-center text-center py-32 px-6 md:px-0">
+        <div className="w-full flex justify-center items-center h-auto md:h-screen text-center py-32 md:py-0  px-6 md:px-0">
             <section className="flex flex-col w-[400px]">
                 <h1 className="text-3xl w-full text-center font-bold mb-6">Sign in</h1>  
                 <form action={loginWithCreds} className="flex flex-col gap-2">
