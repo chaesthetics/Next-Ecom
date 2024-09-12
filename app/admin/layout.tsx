@@ -1,12 +1,14 @@
 import AdminNav from "@/components/AdminNav";
+import Breadcrumbs from "@/components/Breadcrumbs";
 
 export default function Layout({ children }: { children: React.ReactNode }) {
     return (
-      <div className="flex-grow">
-        <div className="flex h-full md:flex-row md:overflow-hidden">
+        <div className="flex h-full md:flex-row md:overflow-hidden bg-gray-50">
           <AdminNav />
-          {children}
+          <div className="flex h-full w-full flex-col">
+            <Breadcrumbs />
+            {children}
+          </div>
         </div>
-      </div>
     );
   }
