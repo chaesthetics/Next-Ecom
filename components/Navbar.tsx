@@ -38,10 +38,10 @@ const Navbar = async() => {
                         Bags
                     </div>
                     <div className="flex items-center hover:border-b-2 py-2 border-b-2 border-white hover:border-black animation-300 duration-200 hover:cursor-pointer">
-                        Gaming
+                        Interior Design
                     </div>
                     <div className="flex items-center hover:border-b-2 py-2 border-b-2 border-w`hite hover:border-black animation-300 duration-200 hover:cursor-pointer">
-                        Electronics
+                        Gaming
                     </div>
                 </div>
                 <div className="flex items-center gap-4 md:gap-6">
