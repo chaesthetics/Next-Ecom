@@ -94,32 +94,4 @@ export const loginWithCreds = async(formData: FormData) => {
         throw error;
     }
     revalidatePath("/");
-    // try{
-    //     const email = formData.get("email") as string;
-    //     const password = formData.get("password") as string;
-
-    //     if(!email || !password){
-    //         throw new Error("Invalid fields");
-    //     }
-
-    //     const existingUser = await getUserByEmail(email);
-    //     console.log(existingUser);
-
-    //     if(!existingUser){
-    //         throw new Error("Account is not registered");
-    //     }
-
-    //     const hash = saltAndHashPassword(password);
-    //     const isMatch = bcrypt.compareSync(
-    //         hash, existingUser.hashedPassword as string
-    //     );
-
-    //     if(!isMatch){
-    //         throw new Error("Incorrect Password");
-    //     }
-
-    //     return existingUser;
-    // }catch(err){
-    //     console.log(err);
-    // }
 }
