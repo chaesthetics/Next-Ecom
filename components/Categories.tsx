@@ -1,8 +1,11 @@
+'use client' 
+
 import React from "react";
 import { FaRegHeart } from "react-icons/fa";
 import Image from "next/image";
 
 const Categories = () => {
+
 return(
     <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-0 md:gap-y-10">
         <div className="flex justify-center hover:cursor-pointer group">

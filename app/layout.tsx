@@ -32,7 +32,7 @@ export default async function RootLayout({
       <body className={inter.className}>
         <div className="bg-white w-full h-full flex flex-col">
           <Navbar />
-          <div className="h-[calc(100vh-74px)] overflow-auto">
+          <div className="h-[calc(100vh-74px)] overflow-h-auto">
             {children}
           </div>
           {/* <Footer /> */}

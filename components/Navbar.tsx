@@ -59,7 +59,7 @@ const Navbar = async() => {
                         <Popover
                             aria-labelledby="default-popover"
                             content={
-                                <div className="flex flex-col px-4 py-4 shadow w-screen md:w-[300px] min-width-[520px] md:min-width-[400px] h-screen md:h-auto">
+                                <div className="flex flex-col px-4 py-4 shadow w-[calc(100vw-10px)] md:w-[300px] min-width-[400px] overflow-w-hidden md:min-width-[400px] h-screen md:h-auto">
                                     <div className="px-2 py-2 rounded-md flex items-center gap-2 hover:bg-gray-100">
                                         <img src={session?.user?.image} className="w-8 h-8 rounded-full"/>
                                         <p className="text-lg md:text-sm font-medium md:font-semibold">{session?.user?.name}</p>
