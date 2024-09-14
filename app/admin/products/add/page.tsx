@@ -6,6 +6,7 @@ import { createItem } from "@/actions/item";
 const addItem =  () => {
 
     const [quantity, setQuantity] = useState(0);
+    const [image, setImage] = useState("");
     
     const handleChangeQuantity = (event:any) => {
         setQuantity(event.target.value);
@@ -26,6 +27,8 @@ const addItem =  () => {
     const uploadImage = async (event:any) => {
         const file = event.target.files[0];
         const base64 = await convertBase64(file);
+        const newFile = base64 as string;
+        setImage(newFile);
     };
     
     
@@ -44,10 +47,14 @@ const addItem =  () => {
         });
       };
 
+    const submitHandler = async(formdata: FormData) =>{
+        await createItem(formdata, image);
+    }
+
 return(
     <div className="flex flex-col px-3 md:px-10 py-8 md:py-4 h-full overflow-y-scroll">
         <div className="text-black text-lg">Add Item</div>
-        <form action={createItem} className="bg-white px-6 md:px-8 py-8 space-y-1 md:space-y-2 md:space-y-4 rounded-xl shadow">
+        <form action={submitHandler} className="bg-white px-6 md:px-8 py-8 space-y-1 md:space-y-2 md:space-y-4 rounded-xl shadow">
             <div className="flex flex-col md:flex-row items-start justify-center md:items-start md:justify-start py-2 space-y-4 md:space-y-0 md:space-x-12">
                 <div className="flex flex-col items-start md:items-start space-y-1 md:space-y-2 w-full md:w-auto">
                     <span className="hidden md:block text-sm md:text-md text-black font-semibold">Item image</span>

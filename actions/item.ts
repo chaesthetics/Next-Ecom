@@ -1,7 +1,7 @@
 'use server'
 
 
-export const createItem = async(formdata: FormData) => {
+export const createItem = async(formdata: FormData, base64: string) => {
     const image = formdata.get("image");
     const name = formdata.get("name") as string;
     const category = formdata.get("category") as string;
@@ -9,9 +9,8 @@ export const createItem = async(formdata: FormData) => {
     const price = formdata.get("price");
     const quantity = formdata.get("quantity");
 
-
     const rawData = {
-        image: ,
+        image: base64,
         name: name,
         category: category,
         description: description,
