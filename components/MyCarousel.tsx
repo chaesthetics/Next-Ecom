@@ -19,12 +19,12 @@ const MyCarousel = () => {
       {
         width >= 539 ?   
           <img
-          src="https://www.casio.com/content/casio/locales/ph/en/products/_jcr_content/root/responsivegrid/container_484421656/carousel/image_1182337914_cop.casiocoreimg.jpeg/1722990357992/emi-top-pc-en-privia.jpeg"
+          src="https://www.casio.com/content/casio/locales/ph/en/products/_jcr_content/root/responsivegrid/container_1448162029/carousel_copy_copy_c/teaser.casiocoreimg.jpeg/1726045578941/homepage-ga-010-gd-010-pc.jpeg"
           alt="image 1"
           className="h-full w-full object-cover"
           /> : 
           <img
-          src="https://www.casio.com/content/casio/locales/ph/en/products/_jcr_content/root/responsivegrid/container_484421656/carousel/image_1182337914_cop/spImage.casiocoreimg.jpeg/1722990357992/emi-top-sp-en-privia.jpeg"
+          src="https://www.casio.com/content/casio/locales/ph/en/products/_jcr_content/root/responsivegrid/container_1448162029/carousel_copy_copy_c/teaser/spImage.casiocoreimg.jpeg/1726045578941/homepage-ga-010-gd-010-sp.jpeg"
           alt="image 1"
           className="h-full w-full object-contain"
           />

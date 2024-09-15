@@ -5,6 +5,7 @@ import NewProduct from "@/components/NewProduct";
 import Image from "next/image";
 import Categories from "@/components/Categories";
 import HotItems from "@/components/HotItems";
+import Footer from "@/components/Footer";
 
 export default async function Home() {  
   const session = await auth();
@@ -33,6 +34,7 @@ export default async function Home() {
         <h2 className="font-bold text-xl md:text-3xl mb-18">Hot Items</h2>
         <HotItems />
       </div>
+      <Footer />
     </main>
   );
 }

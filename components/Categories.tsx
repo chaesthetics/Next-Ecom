@@ -23,7 +23,7 @@ return(
         <div className="flex justify-center hover:cursor-pointer group">
             <div className="relative group">
                 <Image height={220} width={220} className="object-contain group-hover:brightness-50 hover:opacity-90 animation-300 duration-200 h-auto max-w-full rounded-lg" src="https://flowbite.s3.amazonaws.com/docs/gallery/square/image-3.jpg" alt="" />
-                <p className="group-hover:block animation-300 duration-200 hidden absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%] text-2xl text-white font-bold">VASE</p>
+                <p className="group-hover:block animation-300 duration-200 hidden absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%] text-2xl text-white font-bold">INTERRIOR</p>
             </div>
         </div>
         <div className="flex justify-center hover:cursor-pointer group">
@@ -47,7 +47,7 @@ return(
         <div className="flex justify-center hover:cursor-pointer group">
             <div className="relative group">
                 <Image height={220} width={220} className="object-contain group-hover:brightness-50 hover:opacity-90 animation-300 duration-200 h-auto max-w-full rounded-lg" src="https://flowbite.s3.amazonaws.com/docs/gallery/square/image-10.jpg" alt="" />
-                <p className="group-hover:block animation-300 duration-200 hidden absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%] text-2xl text-white font-bold">CONSOLE</p>
+                <p className="group-hover:block animation-300 duration-200 hidden absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%] text-2xl text-white font-bold">GAMING</p>
             </div>
         </div>
         <div className="flex justify-center hover:cursor-pointer group">

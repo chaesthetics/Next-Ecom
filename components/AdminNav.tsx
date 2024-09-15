@@ -27,7 +27,7 @@ const AdminNav = () => {
     }, []);
 
     return(
-        <aside className="md:flex bg-white sticky flex flex-col gap-8 h-full w-auto py-10 pl-1 md:pl-6 pr-1 md:pr-10 border-r-[1px]">
+        <aside className="md:flex bg-white sticky flex flex-col gap-8 h-full w-auto py-14 md:py-10 pl-1 md:pl-6 pr-1 md:pr-10 border-r-[1px]">
             <Image width={80} height={40} alt="logo"
                 src="https://static-00.iconduck.com/assets.00/nextjs-icon-2048x1234-pqycciiu.png"
                 className="hidden md:block ml-2 md:ml-4 w-14 md:w-20"

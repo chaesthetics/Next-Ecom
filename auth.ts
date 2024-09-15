@@ -55,7 +55,6 @@ export const {
                         throw new Error("Incorrect Password");
                     }
                 }
-
                 return user;
             }
         }),
