@@ -2,10 +2,7 @@
 
 import { db } from "@/db";
 import { redirect } from "next/navigation";
-import { revalidatePath } from "next/cache";
 import { auth } from "@/auth";
-
-
 
 const getUserId = async() => {
     const session = await auth();
@@ -48,6 +45,24 @@ export const createItem = async(formdata: FormData, base64: string) => {
     })
 
     redirect('/admin/products');
+}
+
+export const getNewItems = async() => {
+    const newProducts = await db.item.findMany({
+        select:{
+            name: true,
+            image: true,
+            description: true,
+            category: true,
+            price: true,
+        },
+        orderBy: [{
+            updatedAt: 'desc'
+        }],
+        take: 4,
+    });
+
+    return newProducts;
 }
 
 export const getAllItemOfOwner = async() => {
