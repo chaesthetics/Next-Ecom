@@ -22,12 +22,17 @@ const getUserId = async() => {
 }
 
 export const createItem = async(formdata: FormData, base64: string) => {
+
     const image = formdata.get("image");
     const name = formdata.get("name") as string;
     const category = formdata.get("category") as string;
     const description = formdata.get("description") as string;
     const price = formdata.get("price") as string;
     const quantity = formdata.get("quantity") as string;
+
+    if(image == '' || name == '' || category == '' || description == '' || price == '' || quantity == '' ){
+        return "Please fill up all fields";
+    }
 
     const userId =  await getUserId();
     console.log(userId);
