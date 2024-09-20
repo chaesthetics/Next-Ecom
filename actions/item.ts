@@ -104,6 +104,6 @@ export const getItem = async(id: any) => {
             owner: true,
         }
     });
-    
+        
     return item;
 }

@@ -8,6 +8,7 @@ import { ThemeModeScript } from "flowbite-react";
 import Footer from "@/components/Footer";
 import { headers } from 'next/headers';
 
+
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
@@ -29,8 +30,11 @@ export default async function RootLayout({
   return (
     <SessionProvider session={session}>
     <html lang="en">
+      <head>
+        <link rel="icon" href="/favicon.ico" sizes="any" />
+      </head>
       <body className={inter.className}>
-        <div className="bg-white w-full h-full flex flex-col">
+        <div className="bg-white w-full h-screen flex flex-col">
           <Navbar />
           <div className="h-[calc(100vh-74px)] overflow-h-auto">
             {children}
