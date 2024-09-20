@@ -55,6 +55,7 @@ export const createItem = async(formdata: FormData, base64: string) => {
 export const getNewItems = async() => {
     const newProducts = await db.item.findMany({
         select:{
+            id: true,
             name: true,
             image: true,
             description: true,
@@ -92,4 +93,17 @@ export const getAllItemOfOwner = async() => {
     });
 
     return allItemOfOwner;
+}
+
+export const getItem = async(id: any) => {
+    const item = await db.item.findUnique({
+        where: {
+            id : id,
+        },
+        include:{
+            owner: true,
+        }
+    });
+    
+    return item;
 }
