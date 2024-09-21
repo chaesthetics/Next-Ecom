@@ -5,7 +5,7 @@ import { useState } from "react";
 import { FaRegHeart } from "react-icons/fa";
 import Image from "next/image";
 // import { IoBagHandleOutline } from "react-icons/io5";
-import { BsCart } from "react-icons/bs";
+import { TbShoppingBagSearch } from "react-icons/tb";
 import { getNewItems } from "@/actions/item";
 import ContentLoader from "./ContentLoader";
 import Link from "next/link";
@@ -56,7 +56,7 @@ return(
                     </div>
                     <div className="px-2 md:px4 ">
                         <Link href={`/${item?.id}`} className="flex items-center justify-center w-full py-2 md:py-3 md:px-4 bg-black text-white text-sm md:text-md rounded-md gap-2">
-                            <BsCart size={20}/> Add To Cart
+                            <TbShoppingBagSearch size={20}/> View Item
                         </Link>
                     </div>  
                 </div>
