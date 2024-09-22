@@ -34,7 +34,6 @@ const getUserByEmail = async(email: string) => {
 }
  
 export const signup = async(formData: FormData) => {
-
     let redirectPath: string | null = null
     try{
         if(!formData.get("name") || !formData.get("password") || !formData.get("email")){

@@ -74,7 +74,7 @@ return (
         </div>
         <div className="text-white flex justify-between items-center border-t-[0.5px] border-white pt-6">
             <div className="flex text-sm">
-                Copyright © 2021 Things Remembered | All Rights Reserved | Powered by ORYEL Inc.
+                Copyright © 2024 Things Remembered | All Rights Reserved | Powered by ORYEL Inc.
             </div>
             <Image src={footer2} alt="logo" height={40}/>
         </div>
