@@ -2,9 +2,11 @@ import React from "react";
 import LoginGithub from "@/components/LoginGithub";
 import Link from "next/link";
 import { loginWithCreds } from "@/actions/auth";
+import Footer from "@/components/Footer";
 
 const SignIn = () => {
     return(
+        <>
         <div className="w-full flex justify-center items-center h-auto md:h-screen text-center py-32 md:py-0  px-6 md:px-0">
             <section className="flex flex-col w-[400px]">
                 <h1 className="text-3xl w-full text-center font-bold mb-6">Sign in</h1>  
@@ -21,6 +23,8 @@ const SignIn = () => {
                 </div>
             </section>
         </div>
+        <Footer />
+        </>
     )
 }
 

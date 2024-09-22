@@ -12,10 +12,12 @@ import { FaPinterestP } from "react-icons/fa";
 import ModalClick from "@/components/ModalClick";
 import { useEffect, useState } from "react";
 import Footer from "@/components/Footer";
+import { addToCart } from "@/actions/cart";
 
 export default function ItemPage({ params }){
     
     const [item, setItem] = useState();
+    const [quantity, setQuantity] = useState(1);
 
     useEffect(()=>{
         const getInitItem = async() => {
@@ -27,6 +29,29 @@ export default function ItemPage({ params }){
 
     const numberWithCommas = (x: any) =>{
         return x?.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
+    }
+
+    const handleChangeQuantity = (e: Event, event: any) => {
+        e.preventDefault();
+        setQuantity(event?.target?.value);
+    }
+
+    const handleDecrementQuantity = (e: Event) => {
+        e.preventDefault();
+        var currentQuantity = quantity;
+        currentQuantity--;
+        setQuantity(currentQuantity);
+    }
+
+    const handleIncrementQuantity = (e: Event) => {
+        e.preventDefault();
+        var currentQuantity = quantity;
+        currentQuantity++;
+        setQuantity(currentQuantity);
+    }
+
+    const handleAddToCartClick = async(formData: FormData) => {
+        await addToCart(params?.id, formData);
     }
 
  return(
@@ -44,7 +69,7 @@ export default function ItemPage({ params }){
 
     :
 
-    <div className="flex w-full md:flex-row flex-col justify-center py-12 md:py-14 px-6 space-x-0 md:space-x-4 space-y-4 md:space-x-8">
+    <div className="flex w-full md:flex-row flex-col justify-center py-12 md:py-12 px-6 space-x-0 md:space-x-4 space-y-4 md:space-x-8">
         <div className="flex flex-row w-full md:w-1/2 items-center justify-center md:justify-end">
             <img src={item?.image} className="h-[420px] w-[320px] md:h-[500px] md:w-[400px] object-cover"/>
         </div>
@@ -67,22 +92,24 @@ export default function ItemPage({ params }){
                 </div>
                 <div className="text-xl text-yellow-700 font-semibold">
                     ₱{numberWithCommas(item?.price)}.00
-                </div>
+                </div>  
             </div>
-
-            <div className="flex pt-8 gap-4">
-                <div className="relative">
-                    <input name="quantity" value={1} type="number" className="focus:ring-black py-2.5 rounded-md focus:border-black active:border-black active:ring-black text-center border-none outline-none bg-gray-100 w-[100px] text-semibold text-lg"/>
-                    <button className="h-full hover:text-yellow-500 absolute left-2 top-1/2 -translate-y-1/2"><FaMinus /></button>
-                    <button className="h-full hover:text-yellow-500 absolute right-2 top-1/2 -translate-y-1/2"><FaPlus /></button>
-                </div>
-
-          
-                <button className="flex font-semibold items-center justify-center gap-2 w-44 bg-black rounded-md text-white hover:bg-yellow-800 animation-400 transition-300 duration-300">
-                    <BsCart size={20}/> Add To Cart
-                </button>
-
+            
+            
+            <div>
+                <form action={handleAddToCartClick} className="flex pt-8 gap-4">
+                    <div className="relative">
+                        <input name="quantity" onChange={handleChangeQuantity} value={quantity} type="number" className="focus:ring-black py-2.5 rounded-md focus:border-black active:border-black active:ring-black text-center border-none outline-none bg-gray-100 w-[100px] text-semibold text-lg"/>    
+                        <button disabled={quantity <= 0} onClick={handleDecrementQuantity} className="h-full hover:text-yellow-500 absolute left-2 top-1/2 -translate-y-1/2"><FaMinus /></button>
+                        <button disabled={quantity >= item?.quantity} onClick={handleIncrementQuantity} className="h-full hover:text-yellow-500 absolute right-2 top-1/2 -translate-y-1/2"><FaPlus /></button>
+                    </div>
+                    <button type="submit" className="flex font-semibold items-center justify-center gap-2 w-44 bg-black rounded-md text-white hover:bg-yellow-800 animation-400 transition-300 duration-300">
+                        <BsCart size={20}/> Add To Cart
+                    </button>
+                </form>
             </div>
+           
+
             <div className="pt-4 w-[320px] space-y-4">
                 
                 {/* <div className="hover:cursor-pointer flex justify-center w-full gap-1 py-4 items-center bg-yellow-300 hover:bg-yellow-400 animation-300 transition-300 duration-300">

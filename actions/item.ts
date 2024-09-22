@@ -16,7 +16,7 @@ const getUserId = async() => {
         select:{
             id: true
         }
-    });
+    });         
 
     return user?.id;
 }
@@ -104,6 +104,6 @@ export const getItem = async(id: any) => {
             owner: true,
         }
     });
-        
+
     return item;
 }
