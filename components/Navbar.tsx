@@ -14,12 +14,14 @@ import LogoutButton from "./LogoutButton";
 import SearchDrawer from "./SearchDrawer";
 import { CiShop } from "react-icons/ci";
 import nobg from "@/public/static/images/nobg.png"
+import { getCartItems } from "@/actions/cart";
 
 
 
 const Navbar = async() => {
 
     const session = await auth();
+    const cartItems = await getCartItems();
 
     return <nav className={`backdrop-blur-sm bg-opacity-80 shadow border-black bg-white w-full flex items-center sticky top-0 z-50 ` + (session?.user ? '' : 'hidden ')}>
         <div className="flex w-full items-center justify-between my-2 mx-6 md:mx-12">
@@ -47,8 +49,14 @@ const Navbar = async() => {
                 </div>
                 <div className="flex items-center gap-4 md:gap-6">
                     <SearchDrawer />
-                    <div className="hover:cursor-pointer">
+                    <div className="relative hover:cursor-pointer">
                         <BsCart size={20}/>
+                        {
+                            cartItems && 
+                            <div className="overflow-auto">
+                                <div className="absolute z-50 top-[-11px] right-[-11px] px-[8px] py-[3px] rounded-full flex bg-red-600 text-white text-[9px]">{cartItems?.length}</div>
+                            </div>
+                        }  
                     </div>
                     <div className="hover:cursor-pointer">
                         <LuHeart size={20}/>

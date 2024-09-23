@@ -72,7 +72,7 @@ return (
                 </div>
             </div>   
         </div>
-        <div className="text-white flex justify-between items-center border-t-[0.5px] border-white pt-6">
+        <div className="text-white flex justify-between items-center border-t-[1px] border-white pt-6">
             <div className="flex text-sm">
                 Copyright © 2024 Things Remembered | All Rights Reserved | Powered by ORYEL Inc.
             </div>
