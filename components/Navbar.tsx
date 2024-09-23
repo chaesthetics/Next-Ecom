@@ -49,7 +49,7 @@ const Navbar = async() => {
                 </div>
                 <div className="flex items-center gap-4 md:gap-6">
                     <SearchDrawer />
-                    <div className="relative hover:cursor-pointer">
+                    <Link href={'/cart'} className="relative hover:cursor-pointer">
                         <BsCart size={20}/>
                         {
                             cartItems && 
@@ -57,7 +57,7 @@ const Navbar = async() => {
                                 <div className="absolute z-50 top-[-11px] right-[-11px] px-[8px] py-[3px] rounded-full flex bg-red-600 text-white text-[9px]">{cartItems?.length}</div>
                             </div>
                         }  
-                    </div>
+                    </Link>
                     <div className="hover:cursor-pointer">
                         <LuHeart size={20}/>
                     </div>
