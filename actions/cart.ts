@@ -33,6 +33,20 @@ export const addToCart = async(rawItemId: any, formData: FormData) =>{
             quantity: quantity,      
         }
     });
-    
+
     revalidatePath(`/${itemId}`);
+}
+
+export const getCartItems = async() => {
+    const userId = await getUserId();
+    const cartItems = await db.cart.findMany({
+        where: {
+            ownerId: userId,
+        },
+        orderBy: [{
+            updatedAt: "desc",
+        }],
+    })
+
+    return cartItems;
 }
