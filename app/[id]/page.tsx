@@ -13,12 +13,14 @@ import ModalClick from "@/components/ModalClick";
 import { useEffect, useState } from "react";
 import Footer from "@/components/Footer";
 import { addToCart } from "@/actions/cart";
+import AddToCartToast from "@/components/AddToCartToast";
 
 export default function ItemPage({ params }){
     
     const [item, setItem] = useState();
     const [quantity, setQuantity] = useState(1);
     const [isAddedToCart, setIsAddedToCart] = useState(false);
+    const [toastAddToCart, setToastAddToCart] = useState(false);
 
     useEffect(()=>{
         const getInitItem = async() => {
@@ -53,7 +55,11 @@ export default function ItemPage({ params }){
 
     const handleAddToCartClick = async(formData: FormData) => {
         await addToCart(params?.id, formData);
+        setToastAddToCart(true);
         setIsAddedToCart(false);
+        setTimeout(()=>{
+            setToastAddToCart(false);
+        }, 3000);
     }
 
     const handleCartButton = () => {
@@ -62,7 +68,7 @@ export default function ItemPage({ params }){
 
  return(
     <>
-
+    { toastAddToCart && <AddToCartToast /> }
     <div className="flex flex-col">
         { !item ? 
 
