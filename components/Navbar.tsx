@@ -52,7 +52,7 @@ const Navbar = async() => {
                     <Link href={'/cart'} className="relative hover:cursor-pointer">
                         <BsCart size={20}/>
                         {
-                            cartItems && 
+                            cartItems.length !== 0 &&
                             <div className="overflow-auto">
                                 <div className="absolute z-50 top-[-11px] right-[-11px] px-[8px] py-[3px] rounded-full flex bg-red-600 text-white text-[9px]">{cartItems?.length}</div>
                             </div>
