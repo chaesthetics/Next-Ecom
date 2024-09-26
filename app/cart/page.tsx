@@ -13,7 +13,7 @@ const Cart = () => {
     const [cartItems, setCartItems] = useState([{}]);
     const [isLoaded, setIsLoaded] = useState(false);
     const [subTotal, setSubTotal] = useState(0);
-
+    
     useEffect(()=>{
         const getItems = async() => {
             const initItems = await getCartItems();
@@ -34,11 +34,13 @@ const Cart = () => {
 
     const handleChangeQuantity = (e: Event, event: any) => {
         e.preventDefault();
-        console.log(event.target.value);
     }
 
-    const handleDecrementQuantity = (e: Event) => {
-        e.preventDefault();
+    const handleDecrementQuantity = (e: Event, id: string) => {
+        const quantity = document.getElementById(id);
+        const currValue = parseInt(quantity?.value)-1;
+
+        quantity.value = currValue;
     }
 
     const handleIncrementQuantity = (e: Event) => {
@@ -90,8 +92,8 @@ const Cart = () => {
                                             <span className="text-sm font-light text-black">₱{numberWithCommas(item?.items?.price)}.00</span>
                                             <div className="flex flex-row space-x-2">
                                                 <div className="relative w-[100px]">
-                                                    <input name="quantity" onChange={handleChangeQuantity} value={item?.quantity} type="number" className="focus:ring-black py-2.5 rounded-md focus:border-black active:border-black active:ring-black text-center border-none outline-none bg-gray-100 w-[100px] text-semibold text-lg"/>    
-                                                    <button onClick={handleDecrementQuantity} className="h-full hover:text-yellow-500 absolute left-2 top-1/2 -translate-y-1/2"><FaMinus /></button>
+                                                    <input id={item?.id} name="quantity" onChange={handleChangeQuantity} value={item?.quantity} type="number" className="focus:ring-black py-2.5 rounded-md focus:border-black active:border-black active:ring-black text-center border-none outline-none bg-gray-100 w-[100px] text-semibold text-lg"/>    
+                                                    <button onClick={(e)=>handleDecrementQuantity(e, item?.id, item?.quantity)} className="h-full hover:text-yellow-500 absolute left-2 top-1/2 -translate-y-1/2"><FaMinus /></button>
                                                     <button onClick={handleIncrementQuantity} className="h-full hover:text-yellow-500 absolute right-2 top-1/2 -translate-y-1/2"><FaPlus /></button>
                                                 </div>
                                                 <div className="flex items-center space-x-2">

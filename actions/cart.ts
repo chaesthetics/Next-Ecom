@@ -46,7 +46,9 @@ export const getCartItems = async() => {
         orderBy: [{
             updatedAt: "desc",
         }],
-        include:{
+        select: {
+            id: true,
+            quantity: true,
             items: {
                 select: {
                     name: true,
@@ -62,6 +64,7 @@ export const getCartItems = async() => {
                 },
             },
         }
+        
     })
 
     return cartItems;
