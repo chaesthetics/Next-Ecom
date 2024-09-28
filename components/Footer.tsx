@@ -29,7 +29,7 @@ return (
                     <p className="font-semibold">More About Us</p>
                     <FaChevronDown className="md:hidden block group-hover:rotate-180"/>
                 </div>
-                <ul className="font-extralight text-sm hidden md:block group-hover:block">
+                <ul className="font-thin text-sm hidden md:block group-hover:block">
                     <li className="hover:cursor-pointer md:py-0 py-2 md:px-2 px-2 duration-30 animation-300 rounded-md md-hover:black hover:bg-gray-700">Our Company</li>
                     <li className="hover:cursor-pointer md:py-0 py-2 md:px-2 px-2 duration-30 animation-300 rounded-md md-hover:black hover:bg-gray-700">Terms and Conditions</li>
                     <li className="hover:cursor-pointer md:py-0 py-2 md:px-2 px-2 duration-30 animation-300 rounded-md md-hover:black hover:bg-gray-700">Payment Confirmation</li>
@@ -43,7 +43,7 @@ return (
                     <p className="font-semibold">Downloadables</p>
                     <FaChevronDown className="md:hidden block group-hover:rotate-180"/>
                 </div>
-                <ul className="font-extralight text-sm hidden md:block group-hover:block">
+                <ul className="font-thin text-sm hidden md:block group-hover:block">
                     <li className="hover:cursor-pointer md:py-0 py-2 md:px-2 px-2 duration-30 animation-300 rounded-md md-hover:black hover:bg-gray-700">Fonts</li>
                     <li className="hover:cursor-pointer md:py-0 py-2 md:px-2 px-2 duration-30 animation-300 rounded-md md-hover:black hover:bg-gray-700">Homeware Catalog</li>
                 </ul>
@@ -51,7 +51,7 @@ return (
             <div className="text-white space-y-6">
                 <div className="space-y-6">
                     <p className="font-semibold">Let’s Talk</p>
-                    <ul className="font-extralight text-sm space-y-4">
+                    <ul className="font-thin text-sm space-y-4">
                         <div className="flex gap-2 text-white fill-white">
                             <FaHeadset size={20}/>
                             <li className="hover:cursor-pointer hover:underline">aurieljames11@gmail.com</li>
@@ -61,7 +61,7 @@ return (
                 </div>
                 <div className="max-w-48  space-y-6">
                     <p className="font-semibold">Our Office</p>
-                    <ul className="font-extralight text-sm">
+                    <ul className="font-thin text-sm">
                         <p className="text-wrap">GA Tower 6 Forbeswood
                             Heights Condominium
                             26th Street Rizal Drive,

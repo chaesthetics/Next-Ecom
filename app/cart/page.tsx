@@ -7,44 +7,76 @@ import { getCartItems } from "@/actions/cart";
 import ContentLoader from "@/components/ContentLoader";
 import { TiTimes } from "react-icons/ti";
 import Footer from "@/components/Footer";
+import Image from "next/image";
+import { updateOneCart } from "@/actions/cart";
+import { removeItem } from "@/actions/cart";
 
 const Cart = () => {
+    interface Icart {
+        id: string, 
+        quantity: string, 
+        items: {
+            name: string,
+            price: string, 
+            image: string,
+            description: string,
+            owner: {
+                name: string,
+            }
+        }
+    }[];
 
-    const [cartItems, setCartItems] = useState([{}]);
+    const [cartItems, setCartItems] = useState<Icart>([]);
     const [isLoaded, setIsLoaded] = useState(false);
     const [subTotal, setSubTotal] = useState(0);
+    const [isUpdateCart, setIsUpdateCart] = useState(false);
     
     useEffect(()=>{
         const getItems = async() => {
-            const initItems = await getCartItems();
+            const initItems: Icart = await getCartItems();
             setCartItems(initItems);
             var total = 0;
-            initItems.map((item)=>{
-                return total += parseInt(item?.items?.price)
+            initItems.map((item: Icart)=>{
+                return total += (parseInt(item?.items?.price) * parseInt(item?.quantity))
             });
             setSubTotal(total);
         }
         getItems();
         setIsLoaded(true);
-    }, []);
+    }, [isUpdateCart]);
 
     const numberWithCommas = (x: any) =>{
         return x?.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
     }
 
-    const handleChangeQuantity = (e: Event, event: any) => {
-        e.preventDefault();
-    }
-
-    const handleDecrementQuantity = (e: Event, id: string) => {
-        const quantity = document.getElementById(id);
+    const handleDecrementQuantity = (id: string) => {
+        const quantity: any = document.getElementById(id);
         const currValue = parseInt(quantity?.value)-1;
-
         quantity.value = currValue;
     }
 
-    const handleIncrementQuantity = (e: Event) => {
-        e.preventDefault();
+    const handleIncrementQuantity = (id: string) => {
+        const quantity: any = document.getElementById(id);
+        const currValue = parseInt(quantity?.value)+1;
+        quantity.value = currValue;       
+    }
+
+    const updateSpecCart  = async(id: string) => {
+        const quantity = document.getElementById(id);
+        const currValue = quantity?.value;
+        await updateOneCart(id, currValue);
+        setIsUpdateCart(true);
+        setTimeout(()=>{
+            setIsUpdateCart(false);
+        }, 3000);
+    }   
+
+    const removeToCart = async(id: string) => {
+        await removeItem(id);
+        setIsUpdateCart(true);
+        setTimeout(()=>{
+            setIsUpdateCart(false);
+        }, 3000);
     }
 
     return(
@@ -72,13 +104,16 @@ const Cart = () => {
                         </thead>
                         <tbody className="w-full">
                             {
-                                cartItems.map((item)=>(
-                                <tr className="border-t-[1px] border-gray-300">
+                                cartItems.map((item: Icart)=>(
+                                <tr className="border-t-[1px] border-gray-300" key={item?.id}>
                                     <td className="py-0 md:py-3 h-full">
                                         <div className="h-full vertical-top">
-                                            <img 
+                                            <Image 
                                                 className="md:h-44 h-28 md:w-44 w-28 object-contain"
                                                 src={item?.items?.image}
+                                                alt="image"
+                                                width={10}
+                                                height={10}
                                             />
                                         </div>
                                     </td>
@@ -92,19 +127,19 @@ const Cart = () => {
                                             <span className="text-sm font-light text-black">₱{numberWithCommas(item?.items?.price)}.00</span>
                                             <div className="flex flex-row space-x-2">
                                                 <div className="relative w-[100px]">
-                                                    <input id={item?.id} name="quantity" onChange={handleChangeQuantity} value={item?.quantity} type="number" className="focus:ring-black py-2.5 rounded-md focus:border-black active:border-black active:ring-black text-center border-none outline-none bg-gray-100 w-[100px] text-semibold text-lg"/>    
-                                                    <button onClick={(e)=>handleDecrementQuantity(e, item?.id, item?.quantity)} className="h-full hover:text-yellow-500 absolute left-2 top-1/2 -translate-y-1/2"><FaMinus /></button>
-                                                    <button onClick={handleIncrementQuantity} className="h-full hover:text-yellow-500 absolute right-2 top-1/2 -translate-y-1/2"><FaPlus /></button>
+                                                    <input id={item?.id} value={parseInt(item?.quantity)} type="number" className="focus:ring-black py-2.5 rounded-md focus:border-black active:border-black active:ring-black text-center border-none outline-none bg-gray-100 w-[100px] text-semibold text-lg"/>    
+                                                    <button onClick={()=>handleDecrementQuantity(item?.id)} className="h-full hover:text-yellow-500 absolute left-2 top-1/2 -translate-y-1/2"><FaMinus /></button>
+                                                    <button onClick={()=>handleIncrementQuantity(item?.id)} className="h-full hover:text-yellow-500 absolute right-2 top-1/2 -translate-y-1/2"><FaPlus /></button>
                                                 </div>
                                                 <div className="flex items-center space-x-2">
-                                                    <span className="text-xs underline hover:no-underline hover:cursor-pointer">UPDATE CART</span>
-                                                    <span className="text-xs underline hover:no-underline text-yellow-500 hover:cursor-pointer">REMOVE</span>
+                                                    <span onClick={()=>updateSpecCart(item?.id)} className="text-xs underline hover:no-underline hover:cursor-pointer">UPDATE CART</span>
+                                                    <span onClick={()=>removeToCart(item?.id)} className="text-xs underline hover:no-underline text-yellow-500 hover:cursor-pointer">REMOVE</span>
                                                 </div>
                                             </div>
                                         </div>
                                     </td>
                                     <td className="text-xl font-semibold align-top py-4">
-                                        <span className="hidden md:block">₱{numberWithCommas(item?.items?.price)}.00</span>
+                                        <span className="hidden md:block">₱{numberWithCommas(parseInt(item?.items?.price)*parseInt(item?.quantity))}.00</span>
                                     </td>
                                 </tr>
                                 ))
@@ -125,7 +160,7 @@ const Cart = () => {
                         <button className="border-2 px-6 py-3 font-semibold text-white bg-yellow-500 hover:bg-black text-sm hover:cursor-pointer animation-300 transition-300 duration-300 rounded-md">Check Out</button>
                     </div>
                     <button className="hover:cursor-pointer flex justify-center w-full md:w-[40%] gap-1 py-4 items-center rounded-md bg-yellow-300 hover:bg-yellow-400 animation-300 transition-300 duration-300">
-                        <img src="https://static-00.iconduck.com/assets.00/paypal-icon-2048x547-tu0aql1a.png" className="h-5"/>
+                        <Image alt="paypal" width={60} height={20} src="https://static-00.iconduck.com/assets.00/paypal-icon-2048x547-tu0aql1a.png" className="h-5"/>
                     </button>
                     <button className="flex space-x-2 hover:text-yellow-600 animation-300 transition-300 duration-300 hover:border-yellow-400 items-center absolute border text-sm bg-gray-50 top-0 font-light left-4 px-8 py-2">
                         <TiTimes size={18}/>
