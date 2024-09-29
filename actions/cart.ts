@@ -69,3 +69,26 @@ export const getCartItems = async() => {
 
     return cartItems;
 }
+
+export const updateOneCart = async(id: string, quantity: string) => {
+    await db.cart.update({
+        where: {
+            id,
+        },
+        data: {
+            quantity: quantity,
+        }
+    });
+
+    revalidatePath('/cart');
+}
+
+export const removeItem = async(id: string) => {
+    await db.cart.delete({
+        where: {
+            id,
+        }
+    });
+
+    revalidatePath('/cart');
+}
