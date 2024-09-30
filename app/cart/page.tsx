@@ -10,12 +10,14 @@ import Footer from "@/components/Footer";
 import Image from "next/image";
 import { updateOneCart } from "@/actions/cart";
 import { removeItem } from "@/actions/cart";
+import Link from "next/link";
 
 const Cart = () => {
     interface Icart {
         id: string, 
         quantity: string, 
         items: {
+            id: string,
             name: string,
             price: string, 
             image: string,
@@ -96,7 +98,7 @@ const Cart = () => {
                     :
                     <table className="">
                         <thead>
-                            <tr className="bg-gray-100 space-x-2 md:space-x-0">
+                            <tr className="bg-black text-white space-x-2 md:space-x-0">
                                 <th className="px-2.5 py-2.5 text-start font-semibold w-[30%] md:w-[16%]">IMAGE</th>
                                 <th className="px-2.5 py-2.5 text-start font-semibold w-[70%] md:w-[80%]">PRODUCT</th>
                                 <th className="px-2.5 py-2.5 text-end font-semibold hidden md:block">TOTAL</th>
@@ -134,6 +136,7 @@ const Cart = () => {
                                                 <div className="flex items-center space-x-2">
                                                     <span onClick={()=>updateSpecCart(item?.id)} className="text-xs underline hover:no-underline hover:cursor-pointer">UPDATE CART</span>
                                                     <span onClick={()=>removeToCart(item?.id)} className="text-xs underline hover:no-underline text-yellow-500 hover:cursor-pointer">REMOVE</span>
+                                                    <Link href={`/cart/${item?.items?.id}/purchase`} className="text-xs underline hover:no-underline text-green-500 hover:cursor-pointer">PURCHASE</Link>
                                                 </div>
                                             </div>
                                         </div>
@@ -147,7 +150,7 @@ const Cart = () => {
                         </tbody>
                     </table>
                 }   
-                <div className="relative flex bg-gray-50 border-[1px] px-4 md:px-6 py-4 flex-col justify-center items-end space-y-6">
+                <div className="relative flex bg-gray-100 border-[1px] px-4 md:px-6 py-4 flex-col justify-center items-end space-y-6">
                     <div className="flex flex-col space-y-1 items-end pt-14 md:pt-0">
                         <div className="flex justify-end space-x-8 items-center">
                             <span className="text-xl font-semibold">Subtotal: </span>
@@ -159,9 +162,9 @@ const Cart = () => {
                         <button className="border-2 px-6 py-3 font-semibold rounded-md bg-white hover:bg-yellow-500 text-sm hover:text-white hover:cursor-pointer animation-300 transition-300 duration-300">Update Cart</button>
                         <button className="border-2 px-6 py-3 font-semibold text-white bg-yellow-500 hover:bg-black text-sm hover:cursor-pointer animation-300 transition-300 duration-300 rounded-md">Check Out</button>
                     </div>
-                    <button className="hover:cursor-pointer flex justify-center w-full md:w-[40%] gap-1 py-4 items-center rounded-md bg-yellow-300 hover:bg-yellow-400 animation-300 transition-300 duration-300">
+                    <Link href="https://buy.stripe.com/test_cN2cOX3Iz4uUaru7st" className="hover:cursor-pointer flex justify-center w-full md:w-[40%] gap-1 py-4 items-center rounded-md bg-yellow-300 hover:bg-yellow-400 animation-300 transition-300 duration-300">
                         <Image alt="paypal" width={60} height={20} src="https://static-00.iconduck.com/assets.00/paypal-icon-2048x547-tu0aql1a.png" className="h-5"/>
-                    </button>
+                    </Link>
                     <button className="flex space-x-2 hover:text-yellow-600 animation-300 transition-300 duration-300 hover:border-yellow-400 items-center absolute border text-sm bg-gray-50 top-0 font-light left-4 px-8 py-2">
                         <TiTimes size={18}/>
                         <span>ADD ORDER NOTE</span>
