@@ -51,6 +51,7 @@ export const getCartItems = async() => {
             quantity: true,
             items: {
                 select: {
+                    id: true,
                     name: true,
                     image: true,
                     description: true,
