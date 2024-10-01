@@ -10,10 +10,28 @@ export default async function Checkout({
     }:{ 
     params: { id: string },
 }){
-
-    const item = await db.item.findUnique({  
+    const item = await db.cart.findUnique({  
         where: {
             id,
+        },
+        select: {
+            id: true,
+            quantity: true,
+            items: {
+                select: {
+                    id: true,
+                    name: true,
+                    image: true,
+                    description: true,
+                    price: true,
+                    quantity: true,
+                    owner: {
+                        select: {
+                            name: true,
+                        }
+                    }
+                },
+            },
         }
     })
 
@@ -22,9 +40,9 @@ export default async function Checkout({
     }
 
     const paymentIntent = await stripe.paymentIntents.create({
-        amount: parseInt(item.price!),
-        currency: "PHP",
-        metadata: { productId: item.id },
+        amount: (parseInt(item?.items?.price!)*item?.quantity)*100,
+        currency: "USD",
+        metadata: { productId: item?.items?.id! },
     });
     
     if(paymentIntent.client_secret == null){

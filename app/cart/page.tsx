@@ -4,7 +4,6 @@ import { useState, useEffect } from "react";
 import { FaPlus } from "react-icons/fa";
 import { FaMinus } from "react-icons/fa";
 import { getCartItems } from "@/actions/cart";
-import ContentLoader from "@/components/ContentLoader";
 import { TiTimes } from "react-icons/ti";
 import Footer from "@/components/Footer";
 import Image from "next/image";
@@ -126,7 +125,7 @@ const Cart = () => {
                                             <span className="text-sm font-semibold text-black">{item?.items?.owner?.name}</span>
                                         </div>
                                         <div className="flex flex-col space-y-2">
-                                            <span className="text-sm font-light text-black">₱{numberWithCommas(item?.items?.price)}.00</span>
+                                            <span className="text-sm font-light text-black">${numberWithCommas(item?.items?.price)}.00</span>
                                             <div className="flex flex-row space-x-2">
                                                 <div className="relative w-[100px]">
                                                     <input id={item?.id} value={parseInt(item?.quantity)} type="number" className="focus:ring-black py-2.5 rounded-md focus:border-black active:border-black active:ring-black text-center border-none outline-none bg-gray-100 w-[100px] text-semibold text-lg"/>    
@@ -136,13 +135,13 @@ const Cart = () => {
                                                 <div className="flex items-center space-x-2">
                                                     <span onClick={()=>updateSpecCart(item?.id)} className="text-xs underline hover:no-underline hover:cursor-pointer">UPDATE CART</span>
                                                     <span onClick={()=>removeToCart(item?.id)} className="text-xs underline hover:no-underline text-yellow-500 hover:cursor-pointer">REMOVE</span>
-                                                    <Link href={`/cart/${item?.items?.id}/purchase`} className="text-xs underline hover:no-underline text-green-500 hover:cursor-pointer">PURCHASE</Link>
+                                                    <Link href={`/cart/${item?.id}/purchase`} className="text-xs underline hover:no-underline text-green-500 hover:cursor-pointer">PURCHASE</Link>
                                                 </div>
                                             </div>
                                         </div>
                                     </td>
                                     <td className="text-xl font-semibold align-top py-4">
-                                        <span className="hidden md:block">₱{numberWithCommas(parseInt(item?.items?.price)*parseInt(item?.quantity))}.00</span>
+                                        <span className="hidden md:block">${numberWithCommas(parseInt(item?.items?.price)*parseInt(item?.quantity))}.00</span>
                                     </td>
                                 </tr>
                                 ))
@@ -154,7 +153,7 @@ const Cart = () => {
                     <div className="flex flex-col space-y-1 items-end pt-14 md:pt-0">
                         <div className="flex justify-end space-x-8 items-center">
                             <span className="text-xl font-semibold">Subtotal: </span>
-                            <span className="text-2xl text-yellow-500 font-semibold">₱{numberWithCommas(subTotal)}.00</span>
+                            <span className="text-2xl text-yellow-500 font-semibold">${numberWithCommas(subTotal)}.00</span>
                         </div>
                         <span className="text-[15px] font-light text-right">Shipping, taxes, and discounts will be calculated at checkout.</span>
                     </div>
