@@ -93,3 +93,19 @@ export const removeItem = async(id: string) => {
 
     revalidatePath('/cart');
 }
+
+export const userOrderExists = async(email: string, itemId: string) => {
+    return await (db.cart.findFirst({
+        where: {
+            items: {
+                owner: {
+                    email: email,
+                }
+            },
+            id: itemId,
+        },
+        select: {
+            id: true,
+        },
+    })) != null
+}

@@ -52,7 +52,7 @@ return(
                     </div>
                     <div className="flex w-full items-start flex-col px-2 md:px-4 text-black font-semibold py-2 md:py-4 pt-2 md:pt-4">
                         <span className="text-[7px] md:text-[9px] text-yellow-600">Olinestore Price</span>
-                        <span className="text-sm md:text-medium text-yellow-600">₱{numberWithCommas(item?.price)}.00</span>
+                        <span className="text-sm md:text-medium text-yellow-600">${numberWithCommas(item?.price)}.00</span>
                     </div>
                     <div className="px-2 md:px4 ">
                         <Link href={`/${item?.id}`} className="flex items-center justify-center w-full py-2 md:py-3 md:px-4 bg-black text-white text-sm md:text-md rounded-md gap-2">
