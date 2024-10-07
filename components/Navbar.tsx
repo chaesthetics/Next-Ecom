@@ -15,8 +15,7 @@ import SearchDrawer from "./SearchDrawer";
 import { CiShop } from "react-icons/ci";
 import nobg from "@/public/static/images/nobg.png"
 import { getCartItems } from "@/actions/cart";
-
-
+import { HiLocationMarker } from "react-icons/hi";
 
 const Navbar = async() => {
 
@@ -76,6 +75,10 @@ const Navbar = async() => {
                                     <Link href={'/admin/dashboard'} className="px-2 py-2 rounded-md flex border-0 outline-none focus:outline-none active:outline-none items-center gap-2 hover:bg-gray-100">
                                         <CiShop size={32}/>
                                         <p className="text-lg md:text-sm font-medium md:font-semibold">View Shop</p>
+                                    </Link>
+                                    <Link href={'/shipping-information'} className="px-2 py-2 rounded-md flex border-0 outline-none focus:outline-none active:outline-none items-center gap-2 hover:bg-gray-100">
+                                        <HiLocationMarker size={32}/>
+                                        <p className="text-lg md:text-sm font-medium md:font-semibold">Shipping Information</p>
                                     </Link>
                                     <hr className="flex my-2" />
                                     <div className="px-2 py-2 rounded-md flex items-center gap-2 hover:bg-gray-100">

@@ -85,28 +85,6 @@ function Form({ price, itemId }: { price: number, itemId: string }){
                 }
                 <PaymentElement />
                 <LinkAuthenticationElement onChange={(e)=>setEmail(e.value.email)}/>
-
-                <div>
-                    <label htmlFor="name" className="block text-sm font-medium text-gray-700">Name</label>
-                    <input type="text" name="name" id="name" required className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" />
-                </div>
-                <div>
-                    <label htmlFor="addressLine1" className="block text-sm font-medium text-gray-700">Address Line 1</label>
-                    <input type="text" name="addressLine1" id="addressLine1" required className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" />
-                </div>
-                <div>
-                    <label htmlFor="addressLine2" className="block text-sm font-medium text-gray-700">Address Line 2</label>
-                    <input type="text" name="addressLine2" id="addressLine2" className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" />
-                </div>
-                <div>
-                    <label htmlFor="city" className="block text-sm font-medium text-gray-700">City</label>
-                    <input type="text" name="city" id="city" required className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" />
-                </div>
-                <div>
-                    <label htmlFor="postalCode" className="block text-sm font-medium text-gray-700">Postal Code</label>
-                    <input type="text" name="postalCode" id="postalCode" required className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" />
-                </div>
-
                 <button className={`bg-black text-white rounded-lg text-sm py-3 flex items-center font-semibold text-center justify-center `+ `${isLoading ? 'opacity-50': ''}`}
                     disabled={stripe == null || elements == null || isLoading}
                     type="submit"

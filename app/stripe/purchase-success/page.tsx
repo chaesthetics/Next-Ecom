@@ -25,6 +25,8 @@ export default async function SuccessPage({
 
     const isSuccess = paymentIntent.status = "succeeded"
 
+    
+
     return (
         <div className="py-12 max-w-5xl mx-auto w-full px-4 space-y-12">
             {
