@@ -1,6 +1,6 @@
 'use server'
 
-import { signIn, signOut } from "@/auth"
+import { auth, signIn, signOut } from "@/auth"
 import { db } from "@/db";
 import { revalidatePath } from "next/cache";
 import { saltAndHashPassword } from "@/utils/helper";
@@ -93,4 +93,67 @@ export const loginWithCreds = async(formData: FormData) => {
         throw error;
     }
     revalidatePath("/");
+}
+
+export const updateShippingAddress = async(formData: FormData, selectedCountry: string) => {
+    const line1 = formData.get("line1") as string;
+    const line2 = formData.get("line2") as string;
+    const postal_code = formData.get("postal_code") as string;
+    const city = formData.get("city") as string;
+    const state = formData.get("state") as string;
+
+    const userId = await getUserId();
+
+    const address = await db.shippingAddress.findFirst({
+        where: {
+            userId
+        },
+    })
+
+    if(!address){
+        await db.shippingAddress.create({
+            data: {
+                userId: userId,
+                line1: line1,
+                line2: line2,
+                postal_code: postal_code,
+                city: city,
+                state: state,
+                country: selectedCountry,
+            }
+        })
+    }else{
+        await db.shippingAddress.update({
+            data: {
+                line1: line1,
+                line2: line2,
+                postal_code: postal_code,
+                city: city,
+                state: state,
+                country: selectedCountry,
+            },
+            where:{
+                userId,
+            }
+        }) 
+    }
+    revalidatePath('/shipping-information');
+}
+
+
+const getUserId = async() => {
+    const session = await auth();
+    const sessionEmail = session?.user?.email;
+
+    const email = sessionEmail as string;
+    let user: any = await db.user.findUnique({
+        where: {
+            email,
+        },
+        select:{
+            id: true
+        }
+    });         
+
+    return user?.id;
 }
