@@ -42,7 +42,7 @@ export default async function Checkout({
     const paymentIntent = await stripe.paymentIntents.create({
         amount: (parseInt(item?.items?.price!)*item?.quantity)*100,
         currency: "USD",
-        metadata: { productId: item?.items?.id! },
+        metadata: { productId: item?.items?.id!, },
     });
     
     if(paymentIntent.client_secret == null){
