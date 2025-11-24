@@ -8,6 +8,14 @@ const getUserId = async() => {
     const session = await auth();
     const sessionEmail = session?.user?.email;
 
+    if (!sessionEmail) {
+        // Option 1: return null and handle it in callers
+        return null;
+
+        // Option 2: throw a specific error so caller can redirect or show message
+        // throw new Error("Not authenticated");
+    }
+
     const email = sessionEmail as string;
     let user: any = await db.user.findUnique({
         where: {
@@ -39,6 +47,8 @@ export const addToCart = async(rawItemId: any, formData: FormData) =>{
 
 export const getCartItems = async() => {
     const userId = await getUserId();
+    if (!userId) return [];
+    
     const cartItems = await db.cart.findMany({
         where: {
             ownerId: userId,

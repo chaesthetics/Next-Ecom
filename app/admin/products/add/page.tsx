@@ -3,7 +3,7 @@
 import React, { useState } from "react";
 import { createItem } from "@/actions/item";
 
-const addItem =  () => {
+const AddItem =  () => {
 
     const [quantity, setQuantity] = useState(0);
     const [image, setImage] = useState("");
@@ -154,4 +154,4 @@ return(
 )
 }
 
-export default addItem
+export default AddItem

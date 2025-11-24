@@ -14,18 +14,19 @@ import { useEffect, useState } from "react";
 import Footer from "@/components/Footer";
 import { addToCart } from "@/actions/cart";
 import AddToCartToast from "@/components/AddToCartToast";
+import { Item } from "@/types/item";
 
-export default function ItemPage({ params }){
+export default function ItemPage({ params }: any) {
     
-    const [item, setItem] = useState();
-    const [quantity, setQuantity] = useState(1);
-    const [isAddedToCart, setIsAddedToCart] = useState(false);
-    const [toastAddToCart, setToastAddToCart] = useState(false);
+    const [item, setItem] = useState<Item | null>(null);
+    const [quantity, setQuantity] = useState<number>(1);
+    const [isAddedToCart, setIsAddedToCart] = useState<boolean>(false);
+    const [toastAddToCart, setToastAddToCart] = useState<boolean>(false);
 
     useEffect(()=>{
         const getInitItem = async() => {
             const initItem = await getItem(params?.id);
-            setItem(initItem);
+            setItem(initItem as unknown as Item);
         }
         getInitItem();
     }, []);
@@ -34,19 +35,19 @@ export default function ItemPage({ params }){
         return x?.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
     }
 
-    const handleChangeQuantity = (e: Event, event: any) => {
-        e.preventDefault();
+    const handleChangeQuantity = (event: any) => {
+        event.preventDefault();
         setQuantity(event?.target?.value);
     }
 
-    const handleDecrementQuantity = (e: Event) => {
+    const handleDecrementQuantity = (e: any) => {
         e.preventDefault();
         var currentQuantity = quantity;
         currentQuantity--;
         setQuantity(currentQuantity);
     }
 
-    const handleIncrementQuantity = (e: Event) => {
+    const handleIncrementQuantity = (e: any) => {
         e.preventDefault();
         var currentQuantity = quantity;
         currentQuantity++;
@@ -111,9 +112,15 @@ export default function ItemPage({ params }){
             <div>
                 <form action={handleAddToCartClick} className="flex pt-8 gap-4">
                     <div className="relative">
-                        <input name="quantity" onChange={handleChangeQuantity} value={quantity} type="number" className="focus:ring-black py-2.5 rounded-md focus:border-black active:border-black active:ring-black text-center border-none outline-none bg-gray-100 w-[100px] text-semibold text-lg"/>    
+                        <input name="quantity" onChange={(e) => handleChangeQuantity(e)} value={quantity} type="number" className="focus:ring-black py-2.5 rounded-md focus:border-black active:border-black active:ring-black text-center border-none outline-none bg-gray-100 w-[100px] text-semibold text-lg"/>    
                         <button disabled={quantity <= 0} onClick={handleDecrementQuantity} className="h-full hover:text-yellow-500 absolute left-2 top-1/2 -translate-y-1/2"><FaMinus /></button>
-                        <button disabled={quantity >= item?.quantity} onClick={handleIncrementQuantity} className="h-full hover:text-yellow-500 absolute right-2 top-1/2 -translate-y-1/2"><FaPlus /></button>
+                        <button
+                            disabled={!item || item.quantity == null ? true : quantity >= (typeof (item.quantity as any) === 'object' && 'toNumber' in (item.quantity as any) ? (item.quantity as any).toNumber() : Number(item.quantity))}
+                            onClick={handleIncrementQuantity}
+                            className="h-full hover:text-yellow-500 absolute right-2 top-1/2 -translate-y-1/2"
+                        >
+                            <FaPlus />
+                        </button>
                     </div>
                     <button onClick={handleCartButton} type="submit" className="flex font-semibold items-center justify-center gap-2 w-44 bg-black rounded-md text-white hover:bg-yellow-800 animation-400 transition-300 duration-300">
                         {

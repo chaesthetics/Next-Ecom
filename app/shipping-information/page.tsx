@@ -5,7 +5,7 @@ import { useState, useEffect } from "react";
 import Select from 'react-select'
 import { updateShippingAddress } from "@/actions/auth";
 
-const shippingInformation = () => {
+const ShippingInformation = () => {
     const [countries, setCountries] = useState([]);
     const [selectedCountry, setSelectedCountry] = useState({});
 
@@ -69,4 +69,4 @@ const shippingInformation = () => {
     )
 }
 
-export default shippingInformation;
+export default ShippingInformation;

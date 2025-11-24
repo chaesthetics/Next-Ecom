@@ -18,7 +18,7 @@ const SignIn = () => {
                 <p className="mt-2">or</p>
                 <LoginGithub />
                 <div className="text-blue-600 flex items-center text-sm justify-center gap-1 mt-2">
-                    <p className=" text-black">Don't you have an account ?</p>
+                    <p className=" text-black">Dont you have an account ?</p>
                     <Link href={'/sign-up'}>Sign up</Link>
                 </div>
             </section>
